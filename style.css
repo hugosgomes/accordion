@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  padding: 20px;
+  width: 400px;
+  margin: 0 auto;
+  background-color: orange;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+::marker {
+  font-size: 0;
+  width: 0;
+}
+
+summary {
+  position: relative;
+  transition: all 1s;
+}
+
+details summary::before {
+  position: absolute;
+  right: 0;
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid green;
+  transition: transform 0.3s;
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+p {
+  color: gray;
+}
+
+details[open] summary ~ * {
+  animation: sweep 0.5s ease-in-out;
+}
+
+details:not([open]) summary ~ * {
+  animation: close 0.5s ease-in-out;
+}
+
+@keyframes sweep {
+  0% {
+    opacity: 0;
+    margin-left: -10px;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0px;
+  }
+}
+
+@keyframes close {
+  0% {
+    opacity: 1;
+    margin-left: 0px;
+  }
+  100% {
+    opacity: 0;
+    margin-left: -10px;
+  }
+}
